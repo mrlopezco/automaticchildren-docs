@@ -1,0 +1,36 @@
+import { Callout } from "nextra/components";
+
+# Project settings
+
+**Project Settings > Automatic Children** is where you configure **rules** and **cascades** for the current project, view the **About** and (if applicable) **License** tab, and use **Settings** for export, import, and metadata cache.
+
+## General tab
+
+- **Rules** — List of rules. Add, edit, delete, and reorder. Each rule has conditions (when it runs) and child item definitions (what it creates). Only **enabled** rules run when you use **Automatic Child Items** from a work item.
+- **Cascades** — List of cascades. Add, edit, delete. Each cascade has a master rule and stages; only **enabled** cascades appear in the side panel when you choose **Run a cascade**.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Project Settings > Automatic Children — General tab showing list of rules and cascades.
+</Callout>
+
+## About tab
+
+- In-app documentation and links (e.g. to this docs site or marketplace). Use it for a quick overview and support contacts.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Project Settings > Automatic Children — About tab.
+</Callout>
+
+## Settings tab
+
+- **Export rules and cascades** — Download a JSON file with all rules and cascades for this project. Use it for backup or to copy configuration to another project.
+- **Import rules and cascades** — Upload a previously exported JSON file. The extension validates and may show duplicates or unresolved rule references; fix any issues before applying.
+- **Refresh project metadata cache** — The extension caches work item types and fields for fast rule editing. If you add fields, change your process, or make fields required, click **Refresh cache** so the rule editor shows the latest types and fields.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Project Settings > Automatic Children — Settings tab (Export/Import, Refresh metadata cache).
+</Callout>
+
+## License (if shown)
+
+- Some plans show a **License** or trial status here (e.g. trial limits: 3 rules, 3 cascades). For organization-level plans and licensed projects, see [Organization settings](/guides/org-settings) and [Licensing](/concepts/licensing).

@@ -1,0 +1,45 @@
+# Placeholders
+
+**Placeholders** let you reference fields from the **parent** work item when defining child work item field mappings. The extension replaces each placeholder with the parent’s value when creating the child.
+
+## Syntax
+
+Use double curly braces with the field **reference name**:
+
+```
+{{System.Title}}
+{{System.AssignedTo}}
+{{System.AreaPath}}
+```
+
+- **Reference names** are the internal Azure DevOps field names (e.g. `System.Title`, `System.State`, `Custom.MyField`). The rule editor’s field picker shows both display name and reference name.
+- **Identity fields** (`System.AssignedTo`, `System.ChangedBy`, `System.CreatedBy`) are resolved to the user’s **display name** when used in child fields.
+
+## Common placeholders
+
+| Placeholder | Description |
+|-------------|-------------|
+| `{{System.Title}}` | Parent work item title. |
+| `{{System.AssignedTo}}` | Parent Assigned To (display name). |
+| `{{System.State}}` | Parent state. |
+| `{{System.WorkItemType}}` | Parent work item type. |
+| `{{System.AreaPath}}` | Parent area path. |
+| `{{System.IterationPath}}` | Parent iteration path. |
+
+You can use any field that exists on the parent and is available in the rule editor’s field list. For a full reference, see [Placeholder reference](/reference/placeholders).
+
+## Example
+
+Child Task title:
+
+```
+Task for {{System.Title}}
+```
+
+Child Description (if your process has it):
+
+```
+Parent: {{System.Title}} ({{System.WorkItemType}}). Assigned to {{System.AssignedTo}}.
+```
+
+If a field is missing or empty on the parent, the placeholder is replaced with an empty string.

@@ -1,0 +1,49 @@
+import { Callout } from "nextra/components";
+
+# Create a cascade
+
+This guide walks you through creating a **cascade**: a master rule that runs on the work item you open, plus **stages** of rules that run on the work items created in the previous stage (e.g. Epic → User Stories → Tasks).
+
+## Prerequisites
+
+- You already have **rules** that define:
+  - A **master rule** that matches the work item type you’ll open (e.g. Epic) and creates the first level (e.g. User Stories).
+  - **Stage rules** that match the work item types created by the previous stage (e.g. User Story → Tasks).
+
+## 1. Open the cascades list
+
+1. Go to **Project Settings > Automatic Children**.
+2. On the **General** tab, find the **Cascades** section and click **Add cascade** (or equivalent).
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** General tab — Cascades section with Add cascade button.
+</Callout>
+
+## 2. Name and enable the cascade
+
+- Enter a **name** (e.g. “Epic to Stories to Tasks”).
+- Ensure the cascade is **enabled** so it appears when you choose **Run a cascade** in the side panel.
+
+## 3. Choose the master rule
+
+- Select the **master rule**. This rule runs on the work item you open (e.g. an Epic). Its child work item type(s) must match what the first stage expects as parents (e.g. User Stories).
+
+## 4. Define stages
+
+- **Stage 1:** Add the rule(s) that run on **each work item created by the master rule**. For example, a rule “Tasks for User Story” that creates Tasks from User Stories.
+- **Stage 2, 3, …:** Optionally add more stages. Each stage runs on every work item created in the previous stage. Order matters: the extension runs stages in sequence.
+
+The extension validates that referenced rules exist and that work item types line up (e.g. master creates User Stories, stage 1 rules expect User Story as parent).
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Cascade editor — master rule dropdown and stages list (each stage with rule IDs or names).
+</Callout>
+
+## 5. Save
+
+- Click **Save**. The cascade appears in the list. When you open **Automatic Child Items** from a matching work item (e.g. Epic), you can choose **Run a cascade** and select this cascade, then use **Preview cascade** before creating.
+
+## Tips
+
+- Start with one master rule and one stage; add more stages once the first two levels work.
+- Ensure each stage’s rules have conditions that match the work item type produced by the previous stage.

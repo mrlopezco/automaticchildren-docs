@@ -1,0 +1,48 @@
+# Placeholder reference
+
+Placeholders in child work item **field mappings** use the syntax `{{FieldRef}}`, where **FieldRef** is the Azure DevOps field **reference name**. The extension replaces each placeholder with the parent work item’s value when creating the child.
+
+## Syntax
+
+```
+{{System.Title}}
+{{System.AssignedTo}}
+{{Custom.MyField}}
+```
+
+- Use **double curly braces** with no spaces inside (spaces around the reference name are trimmed).
+- **Reference names** are the internal field names (e.g. `System.Title`). The rule editor’s field picker shows display name and reference name.
+
+## System fields (common)
+
+| Reference name | Description |
+|----------------|-------------|
+| `System.Title` | Work item title. |
+| `System.State` | State (e.g. New, Active, Resolved). |
+| `System.WorkItemType` | Work item type (e.g. User Story, Task). |
+| `System.AssignedTo` | Assigned to (identity). Resolved to **display name** in child. |
+| `System.ChangedBy` | Last changed by (identity). Resolved to display name. |
+| `System.CreatedBy` | Created by (identity). Resolved to display name. |
+| `System.AreaPath` | Area path. |
+| `System.IterationPath` | Iteration path. |
+| `System.Description` | Description (full text). |
+| `System.Priority` | Priority (numeric). |
+| `System.Tags` | Tags. |
+
+## Identity fields
+
+For **System.AssignedTo**, **System.ChangedBy**, and **System.CreatedBy**, the extension resolves the value to the user’s **display name** when filling child fields. Use these placeholders in text fields (e.g. Title, Description) or in Assigned To if your process accepts display names.
+
+## Custom fields
+
+Custom fields use their **reference name** from your process (e.g. `Custom.Estimate`, `MyProcess.MyField`). Use the field picker in the rule editor to see the exact reference name for your project.
+
+## Empty or missing values
+
+If the parent does not have a value for the field (empty or null), the placeholder is replaced with an **empty string**. No error is shown; the child field is just blank.
+
+## Example mappings
+
+- Title: `Task for {{System.Title}}`
+- Description: `Parent: {{System.Title}} ({{System.WorkItemType}}). Assigned to {{System.AssignedTo}}.`
+- Assigned To: `{{System.AssignedTo}}` (if your process accepts display name)

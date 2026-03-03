@@ -1,0 +1,38 @@
+import { Callout } from "nextra/components";
+
+# Cascades
+
+**Cascades** chain rules together so that children created by one rule become parents for the next. This is useful for multi-level structures such as **Epic → Features → User Stories → Tasks**.
+
+## How cascades work
+
+1. **Master rule** — Runs first on the **original** work item you open (e.g. an Epic). It creates the first level of children (e.g. Features or User Stories).
+2. **Stages** — Each stage lists rules that run **only on the work items created in the previous stage**. So stage 1 might create User Stories from the Epic; stage 2 might create Tasks from each of those User Stories.
+
+The extension runs the master rule, then runs each stage in order on the newly created items. You get a single preview (by stage) and then create all items in one go.
+
+## When to use cascades
+
+- You have a fixed hierarchy (e.g. Epic → Stories → Tasks) and want one action to create the whole tree.
+- You want to ensure the same rule set runs on “middle” items (e.g. every new User Story gets the same set of Tasks).
+
+If you only need one level of children (e.g. Tasks under a User Story), a single **rule** is enough; you don’t need a cascade.
+
+## Configuring cascades
+
+In **Project Settings > Automatic Children**, use the **Cascades** section to:
+
+- Create, edit, and delete cascades.
+- Choose the **master rule** (must be a rule that matches the work item type you’ll open).
+- Define **stages**: each stage is an ordered list of rule IDs. Those rules run on every work item produced by the previous stage.
+- Enable or disable the cascade. When disabled, it won’t appear in the side panel.
+
+Cascades are validated: the extension checks that referenced rules exist and that work item types are compatible across stages.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Cascades list and cascade editor (master rule + stages).
+</Callout>
+
+## Running a cascade
+
+From a work item’s context menu, choose **Automatic Child Items**. If the project has cascades, the side panel lets you choose **Run rules** or **Run a cascade**. When you run a cascade, select the cascade and use **Preview cascade** to see the full tree (by stage) before creating.

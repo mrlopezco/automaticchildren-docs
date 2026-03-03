@@ -1,0 +1,43 @@
+import { Callout } from "nextra/components";
+
+# Run from a work item
+
+This guide explains how to trigger **Automatic Child Items** from a work item, choose between running **rules** or a **cascade**, use the preview, and handle duplicate warnings.
+
+## Open the side panel
+
+1. In **Boards** (or **Work**), open the work item you want to use as the parent (e.g. a User Story or Epic).
+2. Open the **…** (context) menu on the work item.
+3. Click **Automatic Child Items**. The extension opens a side panel.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Work item context menu with “Automatic Child Items” option highlighted.
+</Callout>
+
+## Choose mode: Run rules or Run a cascade
+
+- **Run rules** — The extension evaluates all **enabled rules** against the current work item. Matching rules and the children they would create are shown in a preview. You can then create those children (and optionally select/deselect which rules to run, if the UI supports it).
+- **Run a cascade** — If the project has at least one cascade, you can select a cascade and use **Preview cascade** to see the full tree (master rule + each stage). Creating then runs the master rule and each stage in order.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Side panel — choice between “Run rules” and “Run a cascade” with cascade selector and “Preview cascade” button.
+</Callout>
+
+## Preview
+
+- **Run rules:** The preview lists which rules match and the child work items that would be created (type and resolved title).
+- **Run a cascade:** The preview shows the result by stage: children from the master rule, then children from each stage.
+- If a child with the **same work item type and title** already exists as a child of the current work item, the extension shows a **duplicate warning**. You can still choose to create (which may create duplicates) or adjust your rules/titles to avoid them.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Side panel — preview list of children to be created and duplicate warnings (if any).
+</Callout>
+
+## Create
+
+- Click the button to **create** the child work items. They are created in Azure DevOps and linked as children of the work item you opened. The panel may show success and failure per item; fix any errors (e.g. missing required fields) and try again if needed.
+
+## Tips
+
+- If no rules match, check the work item’s **type** and **state** (and any field conditions) against your rule conditions.
+- Use placeholders like `{{System.Title}}` in child titles to keep them distinct; avoid literal duplicate titles if you don’t want duplicate warnings.

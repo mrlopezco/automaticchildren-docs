@@ -1,0 +1,49 @@
+import { Callout } from "nextra/components";
+
+# Rules
+
+**Rules** are the core of the Automatic Children extension. Each rule describes **when** it should run (conditions) and **what** child work items to create (child definitions). Rules are configured per project in **Project Settings > Automatic Children**.
+
+## When a rule runs
+
+A rule runs only when you trigger the extension from a work item (context menu **Automatic Child Items**). The extension then evaluates all **enabled** rules against that work item. A rule is applied only if the work item matches its **conditions**.
+
+## Conditions
+
+Conditions filter which parent work items a rule applies to. You can combine:
+
+- **Work item types** — One or more types (e.g. User Story, Bug). The parent must be one of these types.
+- **States** (optional) — One or more states (e.g. New, Active). If you specify states, the parent must be in one of them.
+- **Field condition groups** (optional) — Additional filters such as “Area Path equals MyTeam” or “Priority is not empty”. Conditions in a group are ANDed; groups are ORed (at least one group must match).
+
+See [Condition operators](/reference/conditions) for the full list of operators (equals, contains, is empty, etc.).
+
+## Child item definitions
+
+For each rule you define one or more **child work item** templates. Each template has:
+
+- **Child work item type** — The type of work item to create (e.g. Task, Bug).
+- **Field mappings** — How to set fields on the new work item. You can use literal values or **placeholders** such as `{{System.Title}}` to copy from the parent. The child is automatically linked as a child of the parent.
+
+Example: for a User Story, create a Task with Title `Task for {{System.Title}}` and Assigned To `{{System.AssignedTo}}`.
+
+## Enable and disable
+
+Rules can be **enabled** or **disabled**. Only enabled rules are evaluated and can create children. Disabling a rule lets you keep the configuration without running it—useful for testing or seasonal workflows.
+
+## Preview and create
+
+When you open **Automatic Child Items** from a work item, the extension evaluates all enabled rules and shows a **preview** of which rules match and which children would be created. You can then choose to run the matching rules (or select/deselect specific ones if the UI allows) and create the children. Duplicate detection warns you if a child with the same type and title already exists.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Rule editor (conditions + child item definitions, field picker).
+</Callout>
+
+## Summary
+
+| Concept | Description |
+|--------|-------------|
+| **When** | Work item type, optional state, optional field condition groups. |
+| **What** | One or more child work item definitions (type + field mappings). |
+| **Placeholders** | Use `{{FieldRef}}` in field mappings to copy parent values (see [Placeholders](/concepts/placeholders)). |
+| **Enable/disable** | Only enabled rules run. |

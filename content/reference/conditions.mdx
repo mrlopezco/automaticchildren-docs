@@ -1,0 +1,29 @@
+# Condition operators
+
+When you add **field conditions** to a rule, you choose a **field**, an **operator**, and (for most operators) a **value**. The extension evaluates the parent work item’s field against that value. Condition groups are ANDed (all conditions in the group must match); groups are ORed (at least one group must match).
+
+## Operators
+
+| Operator | Description | Value required? |
+|----------|-------------|-----------------|
+| **eq** | Equals. Field value must equal the given value (case-sensitive). | Yes |
+| **neq** | Not equals. Field value must not equal the given value. | Yes |
+| **contains** | Field value (string) must contain the given substring. | Yes |
+| **notContains** | Field value (string) must not contain the given substring. | Yes |
+| **startsWith** | Field value (string) must start with the given value. | Yes |
+| **isEmpty** | Field must be empty (blank or null). | No (value ignored) |
+| **isNotEmpty** | Field must not be empty. | No (value ignored) |
+
+## Examples
+
+- **Area Path** `eq` `MyTeam\Backend` — Parent must be in that area path.
+- **Priority** `neq` `4` — Parent priority must not be 4.
+- **System.Title** `contains` `[Urgent]` — Parent title must contain the text `[Urgent]`.
+- **System.Description** `isEmpty` — Parent must have no description.
+- **System.AssignedTo** `isNotEmpty` — Parent must be assigned to someone.
+
+## Notes
+
+- Use the **field picker** in the rule editor to select the field by reference name (e.g. `System.Title`, `System.AreaPath`). Custom fields use their process-specific reference names.
+- Identity fields (e.g. Assigned To) are compared by their stored value; the UI may show display names.
+- Empty string and null are treated as empty for **isEmpty** / **isNotEmpty**.

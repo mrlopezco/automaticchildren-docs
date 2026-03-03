@@ -1,0 +1,75 @@
+import { Callout } from "nextra/components";
+
+# Getting Started
+
+This guide walks you through installing the Automatic Children extension, opening its settings, adding your first rule, and creating child work items from a parent work item.
+
+## Prerequisites
+
+- **Azure DevOps Services** or **Azure DevOps Server** (supported targets).
+- Permissions: the extension uses **Work Items** (read/write), **Extension data** (write), and **Graph** (for identity resolution) scopes. Your organization admin may need to allow the extension.
+
+## Step 1: Install the extension
+
+1. Install **Automatic Children** into your Azure DevOps organization from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=LopezColl.automatic-children) (or your organization’s marketplace).
+2. After installation, the extension is available to all projects in the organization. You configure rules per project.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Marketplace page for Automatic Children showing Install button and extension description.
+</Callout>
+
+## Step 2: Open Project Settings
+
+1. Open your Azure DevOps project.
+2. Go to **Project Settings** (gear icon in the bottom-left).
+3. Under **General** or the relevant group, select **Automatic Children**.
+
+You’ll see the extension hub with tabs: **General**, **About**, and (depending on your plan) **License** and **Settings**.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Project Settings hub with Automatic Children selected; General tab showing list of rules and cascades (can be empty).
+</Callout>
+
+## Step 3: Add your first rule
+
+1. On the **General** tab, click **Add rule** (or equivalent).
+2. Give the rule a **name** (e.g. “Tasks for User Story”).
+3. Under **When** (conditions):
+   - Select one or more **work item types** (e.g. User Story).
+   - Optionally select **states** (e.g. New, Active).
+   - Optionally add **field conditions** (e.g. Area Path equals “MyTeam”).
+4. Under **Child items**:
+   - Add at least one **child work item** definition.
+   - Choose the **child work item type** (e.g. Task).
+   - Set **field mappings**, e.g. Title: `Task for {{System.Title}}` so the child title includes the parent title.
+5. **Save** the rule.
+
+Rules can be enabled or disabled without deleting them. Only enabled rules run when you trigger the extension.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Rule editor showing conditions (work item types, states, condition groups) and child item definitions with field picker and placeholder in Title.
+</Callout>
+
+## Step 4: Run from a work item
+
+1. Open **Boards** (or **Work**) and open a work item that **matches** your rule (e.g. a User Story in state New).
+2. Open the **…** (context) menu on the work item.
+3. Choose **Automatic Child Items**.
+4. A side panel opens. If you only have rules (no cascades), you’ll see **Run rules** with a preview of which rules match and which children will be created.
+5. Review the preview. If a child with the same type and title already exists, you’ll see a duplicate warning; you can still create or skip.
+6. Click to create the child work items. They are created and linked as children of the current work item.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Work item context menu with “Automatic Child Items” option highlighted.
+</Callout>
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Side panel showing “Run rules” vs “Run a cascade”, preview list of children to be created, and duplicate warnings if any.
+</Callout>
+
+## Next steps
+
+- **[Concepts: Rules](/concepts/rules)** — How rules and conditions work.
+- **[Concepts: Placeholders](/concepts/placeholders)** — Using `{{System.Title}}`, `{{System.AssignedTo}}`, and other parent field references.
+- **[Guide: Create a rule](/guides/create-rule)** — Detailed steps and tips for creating rules.
+- **[Guide: Run from a work item](/guides/run-from-work-item)** — Using the side panel, preview, and duplicate handling.
