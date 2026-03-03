@@ -12,26 +12,30 @@
 		"publish": true
 	},
 	"dependencies": {
-		"@opennextjs/cloudflare": "1.14.0",
-		"next": "16.0.7",
-		"react": "19.2.1",
-		"react-dom": "19.2.1"
+		"@opennextjs/cloudflare": "1.17.1",
+		"next": "16.1.6",
+		"nextra": "^4.6.1",
+		"nextra-theme-docs": "^4.6.1",
+		"react": "19.2.4",
+		"react-dom": "19.2.4"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "3",
-		"@tailwindcss/postcss": "4.1.17",
-		"@types/node": "24.10.1",
-		"@types/react": "19.2.7",
+		"@tailwindcss/postcss": "4.2.1",
+		"@types/node": "25.3.3",
+		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
-		"eslint": "9.39.2",
-		"eslint-config-next": "16.0.7",
-		"tailwindcss": "4.1.17",
+		"eslint": "10.0.2",
+		"eslint-config-next": "16.1.6",
+		"pagefind": "^1.4.0",
+		"tailwindcss": "4.2.1",
 		"typescript": "5.9.3",
-		"wrangler": "4.56.0"
+		"wrangler": "4.69.0"
 	},
 	"private": true,
 	"scripts": {
 		"build": "next build",
+		"postbuild": "pagefind --site .next/server/app --output-path public/pagefind",
 		"cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
 		"check": "npm run build && tsc",
 		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
