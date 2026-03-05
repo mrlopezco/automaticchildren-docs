@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "exportedAt": "2025-01-01T00:00:00.000Z",
+  "rules": [
+    {
+      "id": "d4000001-0000-4000-8000-000000000001",
+      "name": "Sprint tasks for User Story",
+      "enabled": true,
+      "conditions": {
+        "workItemTypes": ["User Story"],
+        "states": ["Active"]
+      },
+      "childItemDefinitions": [
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Design - {{System.Title}}",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Implementation - {{System.Title}}",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Unit tests - {{System.Title}}",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "QA verification - {{System.Title}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Update documentation - {{System.Title}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        }
+      ]
+    }
+  ],
+  "cascades": []
+}

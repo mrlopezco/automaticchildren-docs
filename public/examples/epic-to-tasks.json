@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "exportedAt": "2025-01-01T00:00:00.000Z",
+  "rules": [
+    {
+      "id": "a1000001-0000-4000-8000-000000000001",
+      "name": "Features for Epic",
+      "enabled": true,
+      "conditions": {
+        "workItemTypes": ["Epic"]
+      },
+      "childItemDefinitions": [
+        {
+          "childWorkItemType": "Feature",
+          "fieldMappings": {
+            "System.Title": "Login page",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Feature",
+          "fieldMappings": {
+            "System.Title": "Session management",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Feature",
+          "fieldMappings": {
+            "System.Title": "Permissions and roles",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "a1000001-0000-4000-8000-000000000002",
+      "name": "Stories for Feature",
+      "enabled": true,
+      "conditions": {
+        "workItemTypes": ["Feature"]
+      },
+      "childItemDefinitions": [
+        {
+          "childWorkItemType": "User Story",
+          "fieldMappings": {
+            "System.Title": "{{System.Title}} - User can enter credentials",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "User Story",
+          "fieldMappings": {
+            "System.Title": "{{System.Title}} - User can reset password",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        }
+      ]
+    },
+    {
+      "id": "a1000001-0000-4000-8000-000000000003",
+      "name": "Tasks for Story",
+      "enabled": true,
+      "conditions": {
+        "workItemTypes": ["User Story"]
+      },
+      "childItemDefinitions": [
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "{{System.Title}} - Implementation",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "{{System.Title}} - Testing",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "{{System.Title}} - Code review",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        }
+      ]
+    }
+  ],
+  "cascades": [
+    {
+      "id": "b2000001-0000-4000-8000-000000000001",
+      "name": "Epic to Features to Stories to Tasks",
+      "enabled": true,
+      "masterRuleId": "a1000001-0000-4000-8000-000000000001",
+      "stages": [
+        { "ruleIds": ["a1000001-0000-4000-8000-000000000002"] },
+        { "ruleIds": ["a1000001-0000-4000-8000-000000000003"] }
+      ]
+    }
+  ]
+}

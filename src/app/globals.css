@@ -24,3 +24,46 @@ body {
 	color: var(--foreground);
 	font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Download example button – matches Copy page button (font + border).
+   Target by data attribute so styles apply when Nextra overwrites className. */
+.download-example-btn,
+button[data-download-example] {
+	appearance: button;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.25rem 0.5rem;
+	padding-inline-start: calc(0.25rem * 2);
+	padding-inline-end: calc(0.25rem * 1);
+	margin: 0;
+	font-size: 0.875rem !important;
+	font-weight: 500;
+	line-height: calc(1.25 / 0.875);
+	font-family: inherit;
+	color: lab(8.11897% 0.811279 -12.254) !important;
+	background: lab(91.6229% -0.159085 -2.26791) !important;
+	border: 1px solid lab(70% -0.02 -0.1) !important;
+	border-radius: 0;
+	cursor: pointer;
+	transition:
+		color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+		background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+		border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.download-example-btn:hover,
+button[data-download-example]:hover {
+	opacity: 0.9;
+}
+.download-example-btn:focus-visible,
+button[data-download-example]:focus-visible {
+	outline: medium auto currentColor;
+}
+@media (prefers-color-scheme: dark) {
+	.download-example-btn,
+	button[data-download-example] {
+		background: color-mix(in oklab, hsl(212deg 100% calc(45% + 49%)), 5%, transparent) !important;
+		color: lab(98.2596% -0.247031 -0.706708) !important;
+		border-color: lab(50% -0.02 -0.1) !important;
+	}
+}

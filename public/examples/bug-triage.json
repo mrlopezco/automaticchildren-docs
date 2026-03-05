@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "exportedAt": "2025-01-01T00:00:00.000Z",
+  "rules": [
+    {
+      "id": "c3000001-0000-4000-8000-000000000001",
+      "name": "Bug triage tasks",
+      "enabled": true,
+      "conditions": {
+        "workItemTypes": ["Bug"],
+        "states": ["New"]
+      },
+      "childItemDefinitions": [
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Investigate - {{System.Title}}",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Fix - {{System.Title}}",
+            "System.AssignedTo": "{{System.AssignedTo}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Code review - {{System.Title}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Write tests - {{System.Title}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        },
+        {
+          "childWorkItemType": "Task",
+          "fieldMappings": {
+            "System.Title": "Verify fix - {{System.Title}}",
+            "System.AreaPath": "{{System.AreaPath}}",
+            "System.IterationPath": "{{System.IterationPath}}"
+          }
+        }
+      ]
+    }
+  ],
+  "cascades": []
+}
