@@ -1,5 +1,5 @@
 export default {
-	rules: "Rules",
+	"general-rules": "General Rules",
 	cascades: "Cascades",
 	placeholders: "Placeholders",
 	licensing: "Licensing",

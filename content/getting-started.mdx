@@ -2,74 +2,119 @@ import { Callout } from "nextra/components";
 
 # Getting Started
 
-This guide walks you through installing the Automatic Children extension, opening its settings, adding your first rule, and creating child work items from a parent work item.
+This guide walks you through installing the extension, exploring your license, and creating your first general rule. By the end, you'll have Automatic Children up and running in your Azure DevOps project.
 
 ## Prerequisites
 
-- **Azure DevOps Services** or **Azure DevOps Server** (supported targets).
-- Permissions: the extension uses **Work Items** (read/write), **Extension data** (write), and **Graph** (for identity resolution) scopes. Your organization admin may need to allow the extension.
+- **Azure DevOps Services** or **Azure DevOps Server** (both are supported).
+- The extension uses **Work Items** (read and write), **Extension data** (write), and **Graph** (for looking up people) scopes. Your organization admin may need to approve the extension before it can be used.
 
 ## Step 1: Install the extension
 
-1. Install **Automatic Children** into your Azure DevOps organization from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=LopezColl.automatic-children) (or your organization’s marketplace).
-2. After installation, the extension is available to all projects in the organization. You configure rules per project.
-
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Marketplace page for Automatic Children showing Install button and extension description.
+<Callout type="warning">
+  Only an **administrator** of your Azure DevOps organization can install extensions. If you're not an admin, ask your admin to install it for you.
 </Callout>
 
-## Step 2: Open Project Settings
+1. Head over to the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=LopezColl.automatic-children) and click **Install**.
+2. Choose the Azure DevOps organization where you want to install it.
+3. Once installed, the extension is available across the entire organization.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Marketplace page for Automatic Children showing the Install button.
+</Callout>
+
+## Step 2: Explore the Organization Settings
+
+After installation, head to your **Organization Settings** to check out the licensing options.
+
+1. Open your Azure DevOps organization (the top level, not a specific project).
+2. Click **Organization Settings** (gear icon at the bottom-left).
+3. Look for **Automatic Children** in the settings list and open it.
+
+Here you'll see the available plans and your current subscription status. By default, you start on a **free trial** that gives you limited functionality — you can create up to **3 general rules** and **3 cascades** per project, which is a great way to explore the extension before committing to a paid plan.
+
+If you'd like to unlock unlimited rules and more projects, you can **upgrade your plan** right from this page. You can also **assign projects** to your license — this determines which projects in your organization get the full, unrestricted experience.
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Organization Settings > Automatic Children — showing the plans table (Trial, Starter, Team, Business, Enterprise) and the Licensed Projects section.
+</Callout>
+
+For more details on plans and pricing, see [Licensing](/concepts/licensing).
+
+## Step 3: Open the Project Settings
+
+Once you've explored the organization settings, navigate to a project where you want to set up your rules.
 
 1. Open your Azure DevOps project.
-2. Go to **Project Settings** (gear icon in the bottom-left).
-3. Under **General** or the relevant group, select **Automatic Children**.
+2. Go to **Project Settings** (gear icon at the bottom-left).
+3. Under the settings list, find and click **Automatic Children**.
 
-You’ll see the extension hub with tabs: **General**, **About**, and (depending on your plan) **License** and **Settings**.
+You'll land on the extension's hub, which has several tabs. The two most important ones are:
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Project Settings hub with Automatic Children selected; General tab showing list of rules and cascades (can be empty).
-</Callout>
+- **General** — This is where you create and manage your **general rules**. General rules are the building blocks of the extension. Each one defines what child work items to create when you run the action on a parent work item.
+- **Cascades** — This is where you create and manage your **cascades**. Cascades chain multiple general rules together to build multi-level hierarchies (like Epic → Feature → User Story → Task) in a single action.
 
-## Step 3: Add your first rule
+These two — **general rules** and **cascades** — are the core pillars of Automatic Children. Everything else builds on top of them.
 
-1. On the **General** tab, click **Add rule** (or equivalent).
-2. Give the rule a **name** (e.g. “Tasks for User Story”).
-3. Under **When** (conditions):
-   - Select one or more **work item types** (e.g. User Story).
-   - Optionally select **states** (e.g. New, Active).
-   - Optionally add **field conditions** (e.g. Area Path equals “MyTeam”).
-4. Under **Child items**:
-   - Add at least one **child work item** definition.
-   - Choose the **child work item type** (e.g. Task).
-   - Set **field mappings**, e.g. Title: `Task for {{System.Title}}` so the child title includes the parent title.
-5. **Save** the rule.
-
-Rules can be enabled or disabled without deleting them. Only enabled rules run when you trigger the extension.
+You'll also see a **Settings** tab (for exporting, importing, and refreshing your project metadata cache), a **Documentation** tab, and an **About** tab.
 
 <Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Rule editor showing conditions (work item types, states, condition groups) and child item definitions with field picker and placeholder in Title.
+  **Screenshot placeholder:** Project Settings > Automatic Children — General tab showing the rules list (can be empty) and the Add Rule button.
 </Callout>
 
-## Step 4: Run from a work item
+## Step 4: Add your first general rule
 
-1. Open **Boards** (or **Work**) and open a work item that **matches** your rule (e.g. a User Story in state New).
-2. Open the **…** (context) menu on the work item.
+Let's create a simple general rule that automatically creates a Task whenever you run the extension on a User Story.
+
+1. On the **General** tab, click **Add Rule**.
+2. Give it a **name** — something descriptive like "Tasks for User Story".
+3. Make sure the rule is **Enabled** (you'll see a toggle).
+4. Under the **Trigger** section ("When a work item matches these conditions"):
+   - Select **User Story** as the work item type.
+   - You can optionally pick specific **states** (like New or Active) if you only want the rule to apply in certain states. For now, leave this open to match any state.
+5. Under the **Actions** section ("Child work items to create automatically"):
+   - Click **Add Child Item**.
+   - Choose **Task** as the child work item type.
+   - In the **field mappings**, you'll see the **Title** field is already there (it's required). Set it to something like `Task for {{System.Title}}` — the `{{System.Title}}` part is a **placeholder** that will automatically pull the parent's title when the child is created.
+   - Want to add more fields? Click **Add Field** and pick any field from the dropdown. You can set literal values or use placeholders for any of them.
+6. Click **Save**.
+
+Your first general rule is ready! You can always come back to edit it, add more child items, or add conditions to make it more specific.
+
+<Callout type="info">
+  **Tip:** You don't have to memorize placeholder values. Each field row has a **placeholder button** (it looks like curly braces). Click it and a dropdown will open showing all the available parent fields you can reference — just pick the one you want and it's inserted for you.
+</Callout>
+
+<Callout type="info" emoji="🖼️">
+  **Screenshot placeholder:** Rule editor showing the name "Tasks for User Story", the trigger set to User Story, and a child Task item with Title mapped to `Task for {{System.Title}}`. Highlight the placeholder button.
+</Callout>
+
+## Step 5: Run from a work item
+
+Now let's see it in action.
+
+1. Go to **Boards** and open a work item that matches your rule — in our case, any **User Story**.
+2. Click the **…** (context menu) on the work item.
 3. Choose **Automatic Child Items**.
-4. A side panel opens. If you only have rules (no cascades), you’ll see **Run rules** with a preview of which rules match and which children will be created.
-5. Review the preview. If a child with the same type and title already exists, you’ll see a duplicate warning; you can still create or skip.
-6. Click to create the child work items. They are created and linked as children of the current work item.
+4. A side panel opens. You'll see **Run rules** with a preview of the child work items that will be created based on your matching rules.
+5. Check the preview — it shows you exactly what will be created, including the resolved title (with the parent's actual title filled in).
+6. If everything looks good, click to **create** the child work items. They'll be created in Azure DevOps and automatically linked as children of the parent work item.
+
+If a child with the same type and title already exists, the extension will show you a **duplicate warning** so you can decide whether to create it anyway or skip it. You can also toggle **Only missing** to skip items that already exist.
 
 <Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Work item context menu with “Automatic Child Items” option highlighted.
+  **Screenshot placeholder:** Work item context menu with "Automatic Child Items" highlighted.
 </Callout>
 
 <Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Side panel showing “Run rules” vs “Run a cascade”, preview list of children to be created, and duplicate warnings if any.
+  **Screenshot placeholder:** Side panel showing the "Run rules" preview with child items listed and the Create button.
 </Callout>
 
 ## Next steps
 
-- **[Concepts: Rules](/concepts/rules)** — How rules and conditions work.
-- **[Concepts: Placeholders](/concepts/placeholders)** — Using `{{System.Title}}`, `{{System.AssignedTo}}`, and other parent field references.
-- **[Guide: Create a rule](/guides/create-rule)** — Detailed steps and tips for creating rules.
-- **[Guide: Run from a work item](/guides/run-from-work-item)** — Using the side panel, preview, and duplicate handling.
+Now that you've created your first general rule and seen it in action, here's what to explore next:
+
+- **[General Rules](/concepts/general-rules)** — Learn about all the options available when creating general rules, including conditions, field mappings, and more.
+- **[Cascades](/concepts/cascades)** — Learn how to chain general rules together to create multi-level hierarchies.
+- **[Placeholders](/concepts/placeholders)** — Understand how to reference parent fields in your child work items.
+- **[Examples](/examples/epic-to-tasks)** — See practical, real-world examples you can recreate in your own projects.
