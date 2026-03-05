@@ -14,15 +14,14 @@ Look for the button with the curly braces icon **`{}`** next to the value input.
 
 The dropdown is organized into two sections — **Common** fields (the ones you'll use most often) and **Details** (additional fields). There's also a **search box** at the top so you can quickly find any field.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** A field mapping row with the placeholder button highlighted. The dropdown is open, showing the "Common" section (Title, State, Assigned To, Area Path, Iteration Path) and the "Details" section (Priority, Tags, Description, etc.). The search box is visible at the top.
-</Callout>
+![General Rules Placeholder Screenshot](/docs/screenshots/concepts/general-rules/general-rule-editor-placeholder-popup.png)
+
 
 <Callout type="info">
   **Tip:** The placeholder button is the fastest way to work with placeholders. No need to memorize field reference names — just click, search, and pick.
 </Callout>
 
----
+
 
 ## How placeholders work
 
@@ -35,7 +34,7 @@ When you run **Automatic Child Items** and the extension creates child work item
 
 For identity fields like **Assigned To**, **Changed By**, and **Created By**, the placeholder resolves to the person's **display name** (e.g., "Jane Smith"). This works well for text fields like Title or Description. For identity-specific fields (like the Assigned To field on the child), you can use the **"Same as parent"** option in the field picker instead.
 
----
+
 
 ## Syntax
 
@@ -57,7 +56,7 @@ Task for {{System.Title}}
 Created from {{System.WorkItemType}} #{{System.Id}}: {{System.Title}}
 ```
 
----
+
 
 ## Available placeholders
 
@@ -98,7 +97,7 @@ If your process has custom fields, you can use their **reference name** in a pla
 
 The field picker in the rule editor shows the reference name for every field, so you can always find the right name there. But again — the easiest way is to just use the **placeholder button** and pick from the dropdown.
 
----
+
 
 ## "Same as parent" vs. placeholders
 
@@ -111,7 +110,7 @@ When should you use which?
 
 Both approaches get the value from the parent — they just work slightly differently under the hood.
 
----
+
 
 ## Examples
 
@@ -135,7 +134,7 @@ Assigned originally to {{System.AssignedTo}}.
 ```
 Creates something like "[P1] Implement login page - Implementation."
 
----
+
 
 ## Summary
 

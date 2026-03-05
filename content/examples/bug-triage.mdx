@@ -53,9 +53,6 @@ Notice how:
 - The first two Tasks have **Assigned To** set to "Same as parent" — whoever is assigned to the Bug is also assigned to investigate and fix it.
 - The last three Tasks leave **Assigned To** empty — a different team member (like a reviewer or QA) can be assigned later.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Rule editor for "Bug triage tasks" — showing Bug as the trigger type with state "New", and 5 Task child items with their titles using `{{System.Title}}` and various field mappings.
-</Callout>
 
 ## Running it
 
@@ -66,9 +63,6 @@ Notice how:
 
 All five Tasks are created and linked as children of the Bug.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Side panel showing the preview for the "Bug triage tasks" rule — 5 Tasks listed with their resolved titles, ready to create.
-</Callout>
 
 ## Variations you might try
 
@@ -76,3 +70,7 @@ All five Tasks are created and linked as children of the Bug.
 - **Different tasks for different teams** — Create separate rules for different Area Paths. For example, "Bug triage (Backend)" with an Area Path condition and different task names.
 - **Include the Bug's priority** — Add Priority to the child's title: `[P{{Microsoft.VSTS.Common.Priority}}] Investigate - {{System.Title}}` to get something like "[P1] Investigate - Login fails when password contains special characters."
 - **Skip existing tasks** — If you run the rule on a Bug that already has some of these Tasks, toggle **"Only missing"** in the preview to skip duplicates.
+
+## Screenshots
+
+![Bug Triage Task Screenshot](/docs/screenshots/examples/bug-triage/bug_triage_tasks.png)

@@ -16,11 +16,9 @@ Cascades are perfect when you have a repeatable multi-level structure. Some comm
 
 If you only need **one level** of child work items (like creating Tasks directly under a User Story), a single general rule is all you need. Cascades are for when you need multiple levels.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** The Cascades tab in Project Settings > Automatic Children, showing a list of cascades with names and enable/disable toggles.
-</Callout>
 
----
+![Cascades Overview Screenshot](/docs/screenshots/concepts/cascades/cascade-overview.png)
+
 
 ## How cascades work
 
@@ -51,11 +49,18 @@ After the master rule runs, the cascade moves through its **stages** in order. E
 
 The result: one click on an Epic creates Features, then User Stories under each Feature, then Tasks under each User Story.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Diagram or visual showing the cascade flow: Epic → (master rule) → Features → (stage 1) → User Stories → (stage 2) → Tasks.
-</Callout>
+Here is the same flow shown as a level-by-level cascade:
 
----
+| Level | Input (runs on) | What runs | Output (creates) |
+|-------|-----------------|-----------|------------------|
+| Start | Epic | — | Epic (you open this) |
+| Master rule | Epic | "Features for Epic" | Features |
+| Stage 1 | Each Feature | "Stories for Feature" | User Stories |
+| Stage 2 | Each User Story | "Tasks for Story" | Tasks |
+
+So in one run: **Epic** → *(master rule)* → **Features** → *(stage 1)* → **User Stories** → *(stage 2)* → **Tasks**.
+
+
 
 ## Creating a cascade
 
@@ -70,11 +75,6 @@ Before you create a cascade, you need to have the **general rules** in place. Th
 
 1. Go to **Project Settings > Automatic Children** and open the **Cascades** tab.
 2. Click **Add Cascade**.
-
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** The Cascades tab with the Add Cascade button.
-</Callout>
-
 3. **Cascade name** — Give it a descriptive name, like "Epic to Features to Stories to Tasks" or "Full project hierarchy."
 
 4. **Enable / Disable** — Make sure the cascade is enabled if you want it to appear when running the extension. You can toggle this at any time.
@@ -83,9 +83,6 @@ Before you create a cascade, you need to have the **general rules** in place. Th
 
    You'll see a helpful note: *"Runs first on the work item you open. Its created items feed into the stages below."*
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** The cascade editor showing the name field, enabled toggle, and master rule dropdown.
-</Callout>
 
 6. **Stages** — Define the stages that run after the master rule.
 
@@ -96,13 +93,9 @@ Before you create a cascade, you need to have the **general rules** in place. Th
 
    You'll see a note: *"Each stage runs on work items created by the previous stage. Order matters."*
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** The stages section in the cascade editor, showing Stage 1 with a rule added (displayed as a chip), Stage 2 with another rule, and the Add Stage button.
-</Callout>
-
 7. Click **Save**.
 
----
+![Cascades Editor Screenshot](/docs/screenshots/concepts/cascades/cascade-editor.png)
 
 ## Validation
 
@@ -118,7 +111,7 @@ The extension validates your cascade when you save it:
   **Tip:** If validation fails, check that your general rules' work item type triggers match the types produced by the previous stage. For example, if Stage 1 creates User Stories, Stage 2's rules should trigger on User Story.
 </Callout>
 
----
+
 
 ## Running a cascade
 
@@ -131,12 +124,9 @@ When you open **Automatic Child Items** from a work item and your project has at
 5. Click **Create** to build the entire hierarchy.
 
 The extension runs the master rule first, waits for those items to be created, then runs each stage in sequence on the newly created items.
+![Execute Rules Screenshot](/docs/screenshots/concepts/cascades/execute_rules.png)
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Side panel showing the "Run a cascade" mode — with a cascade selected, the Preview cascade button, and the preview showing items organized by stage.
-</Callout>
-
----
+![Cascades Running Sidebar Screenshot](/docs/screenshots/concepts/cascades/sidebar_execution_cascade.png)
 
 ## Enable / Disable
 
@@ -151,7 +141,7 @@ However, if you **disable a general rule** that is used as a master rule or in a
   On the **free trial**, you can enable up to **3 cascades** per project. Cascades beyond the limit are automatically disabled. Upgrade your plan to remove this restriction.
 </Callout>
 
----
+
 
 ## Managing cascades
 
@@ -171,7 +161,7 @@ Click **Edit** to change the master rule, add or remove stages, or rename the ca
 
 You can delete a cascade without affecting the general rules it references. The rules remain available for individual use or in other cascades.
 
----
+
 
 ## Summary
 

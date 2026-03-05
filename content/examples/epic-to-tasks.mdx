@@ -53,9 +53,6 @@ This rule creates Feature work items under an Epic.
 | Feature | `Session management` | Same as parent | Same as parent |
 | Feature | `Permissions and roles` | Same as parent | Same as parent |
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Rule editor for "Features for Epic" — showing Epic as the trigger type and 3 Feature child items with their titles and Area Path set to "Same as parent."
-</Callout>
 
 ### General Rule 2: "Stories for Feature"
 
@@ -75,9 +72,6 @@ This rule creates User Stories under a Feature.
 
 Notice how the child titles use the placeholder `{{System.Title}}` — this pulls the Feature's title into each User Story title, keeping everything connected.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Rule editor for "Stories for Feature" — showing Feature as the trigger type and 2 User Story child items with titles using the `{{System.Title}}` placeholder.
-</Callout>
 
 ### General Rule 3: "Tasks for Story"
 
@@ -98,9 +92,6 @@ This rule creates standard development Tasks under a User Story.
 
 Here we're also copying the **Assigned To** field from the parent User Story, so each Task is automatically assigned to the same person.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Rule editor for "Tasks for Story" — showing User Story as the trigger type and 3 Task child items with titles using placeholders and Assigned To set to "Same as parent."
-</Callout>
 
 ## Step 2: Create the cascade
 
@@ -118,9 +109,6 @@ Now chain the three rules together.
 
 3. Save the cascade.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Cascade editor showing "Epic to Features to Stories to Tasks" — with "Features for Epic" as the master rule, Stage 1 containing "Stories for Feature", and Stage 2 containing "Tasks for Story."
-</Callout>
 
 ## Step 3: Run it
 
@@ -132,9 +120,6 @@ Now chain the three rules together.
 
 The extension creates all the Features, then all the User Stories under each Feature, then all the Tasks under each User Story — all in one action.
 
-<Callout type="info" emoji="🖼️">
-  **Screenshot placeholder:** Side panel showing the cascade preview — the Epic at the top, then Features, then User Stories under each Feature, then Tasks under each User Story. The Create button is visible at the bottom.
-</Callout>
 
 ## What you can customize
 
@@ -145,3 +130,7 @@ This is just a starting point. Here are some ideas to make it your own:
 - **Add conditions** — Only run on Epics in a specific Area Path, or only when the Epic is in "New" state.
 - **Add more fields** — Map Priority, Description, Tags, or any custom fields to your child items.
 - **Adjust the hierarchy** — Skip a level (Epic → User Stories → Tasks) or add more levels as needed.
+
+## Screenshots
+
+![Epic to Task Screenshot](/docs/screenshots/examples/epic-to-tasks/epic_to_task.png)

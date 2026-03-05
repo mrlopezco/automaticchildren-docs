@@ -1,9 +1,18 @@
 # Screenshots for documentation
 
-Place screenshot images here. They will be served at `/docs/screenshots/` and can be referenced in MDX as:
+Screenshot images are organized in subfolders that mirror where they are used in the docs:
+
+- **concepts/cascades/** — Images for the Cascades concept page
+- **concepts/general-rules/** — Images for the General Rules concept page
+- **concepts/placeholders/** — Images for the Placeholders concept page (shared images may live in `general-rules`)
+- **concepts/licensing/** — Images for the Licensing concept page
+- **getting-started/** — Images for the Getting Started guide
+- **examples/bug-triage/**, **examples/epic-to-tasks/**, **examples/sprint-planning/** — Images for each example page
+
+Reference images in MDX using the full path, e.g.:
 
 ```md
-![Alt text](/docs/screenshots/filename.png)
+![Alt text](/docs/screenshots/concepts/cascades/cascade-overview.png)
 ```
 
 Suggested filenames (from the docs placeholder list):
