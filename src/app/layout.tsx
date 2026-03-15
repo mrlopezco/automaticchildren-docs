@@ -190,6 +190,15 @@ export default async function RootLayout({
     undefined
   const navbar = buildNavbar(marketplaceUrl)
 
+  // Feedback/contact link from env (e.g. Wrangler vars). When set, replaces the default "Question? Give us feedback" → GitHub.
+  const feedbackLink =
+    process.env.NEXT_PUBLIC_FEEDBACK_LINK ??
+    process.env.FEEDBACK_LINK ??
+    undefined
+  const feedback = feedbackLink
+    ? { content: "Question? Give us feedback", link: feedbackLink }
+    : undefined
+
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
       <Head>
@@ -215,6 +224,7 @@ export default async function RootLayout({
           pageMap={pageMap}
           docsRepositoryBase="https://github.com/mrlopezco/automaticchildren-docs/tree/main"
           footer={footer}
+          feedback={feedback}
         >
           {children}
         </Layout>

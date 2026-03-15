@@ -17,6 +17,7 @@
 	},
 	"upload_source_maps": true,
 	"vars": {
-		"NEXT_PUBLIC_MARKETPLACE_URL": "https://marketplace.visualstudio.com/items?itemName=BiziApps.automatic-children"
+		"NEXT_PUBLIC_MARKETPLACE_URL": "https://marketplace.visualstudio.com/items?itemName=BiziApps.automatic-children",
+		"NEXT_PUBLIC_FEEDBACK_LINK": "https://automatic-children.com/support"
 	}
 }
