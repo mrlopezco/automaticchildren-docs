@@ -15,5 +15,8 @@
 	"observability": {
 		"enabled": true
 	},
-	"upload_source_maps": true
+	"upload_source_maps": true,
+	"vars": {
+		"NEXT_PUBLIC_MARKETPLACE_URL": "https://marketplace.visualstudio.com/items?itemName=BiziApps.automatic-children"
+	}
 }
