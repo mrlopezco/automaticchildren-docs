@@ -1,0 +1,83 @@
+import { Callout } from "nextra/components";
+
+# Multi-select work items
+
+You can run **Automatic Child Items** on **multiple selected work items** at once from the backlog or from query results. Instead of opening each work item and running the extension one by one, you select several items, right-click, and choose **Automatic Child Items**. The same side panel opens, and you can run rules across all selected parents in a single action.
+
+This page describes where multi-select works, how it behaves, and the limits that keep the feature predictable.
+
+## Where multi-select works
+
+You can run Automatic Child Items on multiple work items from two places:
+
+- **Backlog views** — For example, the Epics backlog, Features backlog, or sprint backlogs. Select one or more work items in the list, right-click, and choose **Automatic Child Items**.
+- **Query results** — Run a work item query, select one or more rows in the results grid, right-click, and choose **Automatic Child Items**.
+
+Running from a **single work item** is unchanged: open the work item, use the **…** context menu, and choose **Automatic Child Items**. The same side panel and preview behavior apply; multi-select simply lets you start from a group of items instead of one.
+
+## Behavior
+
+### One work item selected
+
+When you select a single work item and run **Automatic Child Items**, behavior is the same as before: the side panel opens with the rules (and cascades, if configured) that match that work item. You preview and run rules or a cascade as usual. See [General Rules](/concepts/general-rules) and [Cascades](/concepts/cascades) for details.
+
+### Multiple work items selected
+
+When you select **two or more** work items and run **Automatic Child Items**, the side panel opens in **multi-select mode**. The following rules apply.
+
+#### Same work item type required
+
+All selected items must be of the **same work item type** (e.g. all Epics or all User Stories).
+
+If you select a mix of types (for example, some Epics and some Features), the side panel still opens but shows an **error** and does not allow you to run any rules. You must clear the selection, choose only items of one type, and try again.
+
+<Callout type="warning">
+  **Mixed types:** "Selected work items are not all the same type. Select items of a single type to run Automatic Child Items."
+</Callout>
+
+#### Rules that apply to all
+
+Only rules that match **every** selected work item are offered. A rule is shown only if it matches all selected items (by work item type, state, and any field conditions). If a rule matches only some of the selected items, it is not shown for execution.
+
+This keeps behavior consistent: the same rule runs on every parent, so you don't get partial or surprising results.
+
+#### Manual override when no rule matches all
+
+If no rule matches every selected item, the side panel shows a **"No rules matched all N items"** state. In that case, you can still proceed by **choosing one rule** to apply to **all** selected items. That single rule will run for each parent; each parent's children use that parent's own field values (e.g. placeholders like `{{System.Title}}` resolve per parent).
+
+The UI will say: *"No enabled rule matches every selected work item. You can apply one rule to all N items below."* You then select one rule from the list (e.g. via a single-rule choice) and run it.
+
+#### Execution
+
+When you confirm, the selected rule(s) run **for each** selected work item in turn. Child items are created under each parent, using that parent's field values. So if your rule creates a Task with title `Task for {{System.Title}}`, each parent gets a Task whose title uses that parent's title.
+
+The preview will indicate: *"This will run for each of N selected work items (using each item's own field values)."* After a successful run, you'll see a result message such as: *"Created X child items across Y parents successfully."* (If some parents fail, you may see: *"X succeeded, Z failed across Y parents."*)
+
+#### Cascades are not available
+
+When two or more work items are selected, **cascades are disabled**. Only the **Run rules** path is shown — there is no **Run a cascade** option. Cascades remain available when you run from a single work item.
+
+<Callout type="info">
+  **Tip:** To run a cascade on multiple parents, run the extension on one work item at a time, or use multi-select with rules only and then run a cascade on the newly created children if your workflow requires it.
+</Callout>
+
+#### Selection limit
+
+Up to **20** work items can be processed in one run. If you select more than 20, only the first 20 are used. The side panel may show a short note such as: *"Only the first 20 selected items are used."*
+
+## Summary of limits
+
+| Limit | Behavior |
+|-------|----------|
+| **Max items per run** | 20 (only the first 20 selected are used if you select more). |
+| **Mixed types** | Not allowed; an error is shown and no rules can run until you select items of a single type. |
+| **Cascades** | Disabled when 2 or more items are selected; only Run rules is available. |
+| **Manual override** | Exactly **one** rule can be applied to **all** selected items when no rule matches every item. |
+
+These limits keep multi-select predictable and avoid long-running or confusing operations.
+
+## Related topics
+
+- **[General Rules](/concepts/general-rules)** — How rules are defined (trigger conditions and child work items). Multi-select runs these same rules on each selected parent.
+- **[Cascades](/concepts/cascades)** — Multi-level hierarchies; available only when running from a single work item.
+- **[Placeholders](/concepts/placeholders)** — How `{{System.Title}}` and other parent fields are resolved; in multi-select, each parent's values are used when creating that parent's children.
